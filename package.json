@@ -1,0 +1,38 @@
+{
+  "name": "react-redux-assync-youtube",
+  "version": "1.0.0",
+  "description": "react-redux-assync-youtube",
+  "main": "index.js",
+  "scripts": {
+    "w": "webpack --watch",
+    "start:dev": "nodemon --watch webpack.config.js --exec \"webpack-dev-server --mode development\""
+  },
+  "keywords": [],
+  "author": "lion",
+  "license": "ISC",
+  "devDependencies": {
+    "babel-loader": "^7.1.4",
+    "babel-polyfill": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "babel-preset-stage-2": "^6.24.1",
+    "css-loader": "^0.28.11",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "node-sass": "^4.9.0",
+    "nodemon": "^1.17.5",
+    "path": "^0.12.7",
+    "react": "^16.4.0",
+    "react-dom": "^16.4.0",
+    "react-redux": "^5.0.7",
+    "redux": "^4.0.0",
+    "sass-loader": "^7.0.1",
+    "style-loader": "^0.21.0",
+    "webpack": "^4.10.2",
+    "webpack-cli": "^2.1.4",
+    "webpack-dev-server": "^3.1.4"
+  },
+  "dependencies": {
+    "redux-saga": "^0.16.0"
+  }
+}
