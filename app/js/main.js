@@ -13,10 +13,7 @@ import VideoSaga, { watchChangeString }  from './sagas';
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 
-Promise.all([
-	sagaMiddleware.run(VideoSaga),
-	sagaMiddleware.run(watchChangeString)
-]);
+sagaMiddleware.run(VideoSaga),
 
 ReactDOM.render(
 	<Provider store={store}>

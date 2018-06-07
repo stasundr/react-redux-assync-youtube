@@ -1,10 +1,6 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class Video extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
+class Video extends Component {
 	componentWillReceiveProps(nextProps) {
 		if(nextProps.link && nextProps.link !== this.props.link)
 	  	if(typeof window.Player.loadVideoById == 'function') 
@@ -43,7 +39,7 @@ class Video extends React.Component {
 	render() {
 		return(
 			<section className='youtubeComponent-wrapper'>
-        <div ref={(r) => { this.youtubePlayerAnchor = r }}></div>
+        <div ref={(r) => { this.youtubePlayerAnchor = r }} />
       </section>
 		);
 	}

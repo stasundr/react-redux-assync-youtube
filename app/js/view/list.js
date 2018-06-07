@@ -1,12 +1,7 @@
-import React from 'react';
+import React, { Component } from 'react';
 
-class List extends React.Component {
-	constructor(props) {
-		super(props);
-	}
-
+class List extends Component {
 	render() {
-		console.log(this.props)
 		return(
 			<ul className="main-list">
 				{ this.props.list ? (this.props.list).map((item, index) => 
