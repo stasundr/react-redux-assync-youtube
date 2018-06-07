@@ -8,39 +8,13 @@ import List from './list';
 class App extends React.Component {
 	constructor(props) {
 		super(props);
-		this.clickEvent = this.clickEvent.bind(this);
-		this.state = {
-			inp: '',
-			video: ''
-		};
 	}
 
 	changeValue(e) {
-		this.setState({inp: e.target.value});
+		this.props.changeString(e.target.value);
 	}
-	clickEvent() {
-		if( this.state.inp ) {
-			let pattern = (this.state.inp).match(/^(?:https?\:\/\/)(?:www\.)?(?:youtu(?:(?:\.be)|(?:be\.com)))\/(?:watch\?v\=)?([\w\-\_]{5,})?$/);
-			
-			// const my_promise = () =>	{
-			// return new Promise( (resolve, reject) => {
-			// 		if(pattern) {
-			// 			pattern = pattern[1];
-			// 			resolve(pattern);
-			// 		}
-			// 		else {
-			// 			reject();
-			// 		}
-			// 	});
-			// }
-
-			// my_promise()
-			// 	.then((pattern) => {
-			// 		this.props.newLink(this.state.inp);
-			// 		this.props.loadVideo(pattern);		
-			// 	})
-			// 	.then(pattern => this.setState({link: pattern}));
-		}
+	updateVideo() {
+		this.props.fetchedVideo(this.props.input);
 	}
 
 	render() {
@@ -48,32 +22,35 @@ class App extends React.Component {
 			<div className="main-block">
 				<div className="in-form">
 					<div className="send-block">
-						<Input changeValue={this.changeValue.bind(this)} value={this.state.inp} />
+						<Input changeValue={ this.changeValue.bind(this) } value={this.props.input} />
 					</div>
 					<div className="send-block">
-						<div className="send-inp" onClick={() => { this.props.fetchedVideo(); this.forceUpdate(); }} >Найти</div>
+						<div className="send-inp" onClick={this.updateVideo.bind(this)} >Найти</div>
 					</div>
 				</div>
 				<div className="main-preview">
-					<Video link={this.props.store.video} />
+					<Video link={this.props.video} />
 				</div>
 				<div className="store-list">
-					<List store={this.props.store} />
+					<List list={this.props.list} />
 				</div>
 			</div>
 		);
 	}
 }
 
-const state = (state) => {
-	return { store: state };
-};
+const state = (state) => ({
+		input: state.get('input'),
+		url: state.get('url'),
+		video:state.get('video'),
+		error: state.get('error'),
+		list: state.get('list')
+});
 
 const dispatch = (dispatch) => {
 	const dispatch_object = {
-		fetchedVideo: () => dispatch( {type: 'FETCHED_VIDEO'} )
-		// newLink: (link_name) => dispatch({ type: 'NEW_LINK', link: link_name }),
-		// loadVideo: (good_link) => dispatch({ type: 'LOAD_VIDEO', good_link: good_link })
+		fetchedVideo: (str) => dispatch({ type: 'FETCHED_VIDEO' , str: str }),
+		changeString: (str) => dispatch({ type: 'FETCHED_STRING', str: str})
 	};
 	return dispatch_object;
 }

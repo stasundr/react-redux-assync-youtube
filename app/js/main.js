@@ -8,13 +8,15 @@ import createSagaMiddleware from 'redux-saga';
 
 import reducer from './reducer';
 import App  from './view';
-import VideoSaga  from './sagas';
+import VideoSaga, { watchChangeString }  from './sagas';
 
 const sagaMiddleware = createSagaMiddleware();
 const store = createStore(reducer, applyMiddleware(sagaMiddleware));
 
-
-sagaMiddleware.run(VideoSaga);
+Promise.all([
+	sagaMiddleware.run(VideoSaga),
+	sagaMiddleware.run(watchChangeString)
+]);
 
 ReactDOM.render(
 	<Provider store={store}>

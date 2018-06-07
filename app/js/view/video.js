@@ -6,10 +6,9 @@ class Video extends React.Component {
 	}
 
 	componentWillReceiveProps(nextProps) {
-		if(nextProps.link && nextProps.link !== this.props.link) {
-			console.log('change: ' + nextProps.link);
-	  	(window.Player).loadVideoById(nextProps.link);
-		}
+		if(nextProps.link && nextProps.link !== this.props.link)
+	  	if(typeof window.Player.loadVideoById == 'function') 
+	  		(window.Player).loadVideoById(nextProps.link);
 	}
 
 	componentWillMount() {
@@ -24,7 +23,6 @@ class Video extends React.Component {
 	  }
 
 	  (window.loadYT).then((YT) => {
-	  	console.log('link: ' + this.props.link);
 	    window.Player = new YT.Player(this.youtubePlayerAnchor, {
 	      height: 450,
 	      width: 900,
@@ -50,9 +48,5 @@ class Video extends React.Component {
 		);
 	}
 }
-
-Video.defaultProps = {
-	link: '8p1uLKYAwEw&t'
-};
 
 export default Video;

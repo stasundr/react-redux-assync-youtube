@@ -109,7 +109,11 @@ input, textarea {
   max-width: 500px;
   margin: 0 auto; }
   .main-list li {
+    display: -webkit-flex;
+    display: flex;
     margin-bottom: 8px; }
+    .main-list li > div {
+      margin-right: 25px; }
 
 .main-preview {
   margin: 50px 0;

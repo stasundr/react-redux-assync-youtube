@@ -6,11 +6,18 @@ class List extends React.Component {
 	}
 
 	render() {
+		console.log(this.props)
 		return(
 			<ul className="main-list">
-				{ this.props.store ? (this.props.store.list).map((item, index) => 
+				{ this.props.list ? (this.props.list).map((item, index) => 
 					<li key={index}>
-						{index + 1}. {item}
+						<div>{index + 1}.</div>
+						<div>
+							<img src={item.thumble} />
+						</div>
+						<div>
+							<a href={item['link']}>{item['title']}</a>
+						</div>
 					</li>
 				) : false}
 			</ul>
